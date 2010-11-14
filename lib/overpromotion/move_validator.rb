@@ -15,6 +15,10 @@ module Overpromotion
 
     private
 
+    def valid_move_in_place(from, to)
+      from != to
+    end
+
     def valid_move_stone_exists(from, to)
       not @board.stone_at(*from).nil?
     end

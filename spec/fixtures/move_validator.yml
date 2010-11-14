@@ -15,3 +15,4 @@
   - [black, [6, 0], [5, 0], true]
   - [black, [1, 0], [2, 0], false] # black shouldn’t touch white stones
   - [black, [3, 0], [4, 0], false] # black shouldn’t move from unocuppied fields
+  - [black, [6, 0], [6, 0], false] # can’t move in place
