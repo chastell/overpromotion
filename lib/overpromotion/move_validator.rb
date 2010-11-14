@@ -15,6 +15,14 @@ module Overpromotion
 
     private
 
+    def valid_move_axes(from, to)
+      [
+        from.first == to.first,
+        from.last  == to.last,
+        (from.first - to.first).abs == (from.last - to.last).abs,
+      ].any?
+    end
+
     def valid_move_in_board(from, to)
       [from, to].flatten.all? { |coord| coord.between?(0, 7) }
     end

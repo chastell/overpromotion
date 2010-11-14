@@ -19,3 +19,29 @@
   - [black, [6, 0], [6, 1], false] # can’t capture own stone
   - [black, [6, 7], [6, 8], false] # can’t move off-board
   - [black, [6, -1], [5, 0], false] # can’t move from off-board
+
+# valid move axes
+- board: |-
+    ........
+    ........
+    ........
+    ...x....
+    ........
+    ........
+    ........
+    ........
+  moves:
+  - [black, [3, 3], [3, 0], true] # can move to left
+  - [black, [3, 3], [3, 7], true] # can move to right
+  - [black, [3, 3], [0, 3], true] # can move to top
+  - [black, [3, 3], [7, 3], true] # can move to bottom
+  - [black, [3, 3], [0, 0], true] # can move to top-left
+  - [black, [3, 3], [0, 6], true] # can move to top-right
+  - [black, [3, 3], [6, 0], true] # can move to bottom-left
+  - [black, [3, 3], [7, 7], true] # can move to bottom-right
+  - [black, [3, 3], [2, 1], false] # can’t move like a knight
+  - [black, [3, 3], [1, 2], false] # can’t move like a knight
+  - [black, [3, 3], [1, 4], false] # can’t move like a knight
+  - [black, [3, 3], [2, 5], false] # can’t move like a knight
+  - [black, [3, 3], [4, 5], false] # can’t move like a knight
+  - [black, [3, 3], [5, 4], false] # can’t move like a knight
