@@ -8,7 +8,9 @@ module Overpromotion
 
     def valid_move?(player, from, to)
       @player = player
-      valid_move_stone_exists(from, to) and valid_move_stone_owned(from, to)
+      private_methods(false).grep(/^valid_move_/).all? do |method|
+        send(method, from, to)
+      end
     end
 
     private
