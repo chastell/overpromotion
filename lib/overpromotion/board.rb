@@ -24,8 +24,8 @@ module Overpromotion
       board
     end
 
-    def empty?(row, column)
-      @rows[row][column].nil?
+    def empty?(field)
+      @rows[field.first][field.last].nil?
     end
 
     def fields_between(from, to)
@@ -46,8 +46,8 @@ module Overpromotion
       rows.zip(cols) - [from, to]
     end
 
-    def stone_at(row, column)
-      @rows[row][column]
+    def stone_at(field)
+      @rows[field.first][field.last]
     end
 
     def to_s

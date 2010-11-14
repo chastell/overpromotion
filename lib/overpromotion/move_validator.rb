@@ -24,7 +24,7 @@ module Overpromotion
     end
 
     def valid_move_empty_fields_in_path(from, to)
-      @board.fields_between(from, to).all? { |field| @board.empty?(*field) }
+      @board.fields_between(from, to).all? { |field| @board.empty?(field) }
     end
 
     def valid_move_in_board(from, to)
@@ -36,15 +36,15 @@ module Overpromotion
     end
 
     def valid_move_no_capturing_of_own_stones(from, to)
-      @board.empty?(*to) or @board.stone_at(*to).colour != @player
+      @board.empty?(to) or @board.stone_at(to).colour != @player
     end
 
     def valid_move_stone_exists(from, to)
-      not @board.empty?(*from)
+      not @board.empty?(from)
     end
 
     def valid_move_stone_owned(from, to)
-      @board.stone_at(*from).colour == @player
+      @board.stone_at(from).colour == @player
     end
 
   end
