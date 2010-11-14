@@ -11,6 +11,18 @@ module Overpromotion
       2.times { @rows << Array.new(8) { Stone.new(:black) } }
     end
 
+    def to_s
+      rows.map do |row|
+        row.map do |field|
+          case field
+          when nil               then '.'
+          when Stone.new(:black) then 'x'
+          when Stone.new(:white) then 'o'
+          end
+        end.join
+      end.join("\n")
+    end
+
   end
 
 end

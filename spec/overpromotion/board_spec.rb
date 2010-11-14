@@ -24,6 +24,23 @@ module Overpromotion
 
     end
 
+    context '#to_s' do
+
+      it 'returns a String representation of the Board' do
+        Board.new.to_s.should == '
+          oooooooo
+          oooooooo
+          ........
+          ........
+          ........
+          ........
+          xxxxxxxx
+          xxxxxxxx
+        '.strip.tr(' ', '')
+      end
+
+    end
+
   end
 
 end
