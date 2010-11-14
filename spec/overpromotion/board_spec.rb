@@ -24,6 +24,24 @@ module Overpromotion
 
     end
 
+    context '.from_s' do
+
+      it 'returns a Board built from the String representation' do
+        smile = '
+          ..oooo..
+          .o....o.
+          o.x..x.o
+          o......o
+          o.x..x.o
+          o..xx..o
+          .o....o.
+          ..oooo..
+        '.strip.tr(' ', '')
+        Board.from_s(smile).to_s.should == smile
+      end
+
+    end
+
     context '#to_s' do
 
       it 'returns a String representation of the Board' do

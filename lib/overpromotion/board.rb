@@ -11,6 +11,21 @@ module Overpromotion
       2.times { @rows << Array.new(8) { Stone.new(:black) } }
     end
 
+    def self.from_s(string)
+      rows = string.split("\n").map do |line|
+        line.split('').map do |field|
+          case field
+          when '.' then nil
+          when 'x' then Stone.new(:black)
+          when 'o' then Stone.new(:white)
+          end
+        end
+      end
+      board = Board.new
+      board.rows.replace(rows)
+      board
+    end
+
     def to_s
       rows.map do |row|
         row.map do |field|
