@@ -1,0 +1,15 @@
+# boards & moves (in the form of [player, from, to, validity]) for MoveValidator
+# from & to in the [row, column] notation (0-based starting from top/left)
+
+# example opening moves
+- board: |-
+    oooooooo
+    oooooooo
+    ........
+    ........
+    ........
+    ........
+    xxxxxxxx
+    xxxxxxxx
+  moves:
+  - [black, [6, 0], [5, 0], true]
