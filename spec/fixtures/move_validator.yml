@@ -17,3 +17,5 @@
   - [black, [3, 0], [4, 0], false] # black shouldn’t move from unocuppied fields
   - [black, [6, 0], [6, 0], false] # can’t move in place
   - [black, [6, 0], [6, 1], false] # can’t capture own stone
+  - [black, [6, 7], [6, 8], false] # can’t move off-board
+  - [black, [6, -1], [5, 0], false] # can’t move from off-board

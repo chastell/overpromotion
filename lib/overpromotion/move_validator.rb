@@ -15,6 +15,10 @@ module Overpromotion
 
     private
 
+    def valid_move_in_board(from, to)
+      [from, to].flatten.all? { |coord| coord.between?(0, 7) }
+    end
+
     def valid_move_in_place(from, to)
       from != to
     end
