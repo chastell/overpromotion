@@ -7,7 +7,18 @@ module Overpromotion
     end
 
     def valid_move?(player, from, to)
-      not @board.stone_at(*from).nil? and @board.stone_at(*from).colour == player
+      @player = player
+      valid_move_stone_exists(from, to) and valid_move_stone_owned(from, to)
+    end
+
+    private
+
+    def valid_move_stone_exists(from, to)
+      not @board.stone_at(*from).nil?
+    end
+
+    def valid_move_stone_owned(from, to)
+      @board.stone_at(*from).colour == @player
     end
 
   end
