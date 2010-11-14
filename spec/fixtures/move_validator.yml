@@ -16,3 +16,4 @@
   - [black, [1, 0], [2, 0], false] # black shouldn’t touch white stones
   - [black, [3, 0], [4, 0], false] # black shouldn’t move from unocuppied fields
   - [black, [6, 0], [6, 0], false] # can’t move in place
+  - [black, [6, 0], [6, 1], false] # can’t capture own stone

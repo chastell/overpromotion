@@ -19,6 +19,10 @@ module Overpromotion
       from != to
     end
 
+    def valid_move_no_capturing_of_own_stones(from, to)
+      @board.stone_at(*to).nil? or @board.stone_at(*to).colour != @player
+    end
+
     def valid_move_stone_exists(from, to)
       not @board.stone_at(*from).nil?
     end
