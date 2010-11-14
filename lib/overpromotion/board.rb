@@ -24,6 +24,10 @@ module Overpromotion
       board
     end
 
+    def empty?(row, column)
+      @rows[row][column].nil?
+    end
+
     def stone_at(row, column)
       @rows[row][column]
     end

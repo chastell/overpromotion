@@ -39,6 +39,16 @@ module Overpromotion
 
     end
 
+    context '#empty?' do
+
+      it 'is a predicate whether a given Board field is empty' do
+        Board.new.empty?(0,0).should be_false
+        Board.new.empty?(7,7).should be_false
+        Board.new.empty?(3,3).should be_true
+      end
+
+    end
+
     context '#stone_at' do
 
       it 'returns the Stone at the given Board field' do
