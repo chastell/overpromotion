@@ -49,6 +49,22 @@ module Overpromotion
 
     end
 
+    context '#fields_between' do
+
+      it 'returns an Array of fields between the two given fields' do
+        Board.new.fields_between([3,4], [3,4]).should == []
+        Board.new.fields_between([3,4], [2,5]).should == []
+        Board.new.fields_between([3,4], [0,7]).should == [[2,5], [1,6]]
+        Board.new.fields_between([3,4], [5,2]).should == [[4,3]]
+        Board.new.fields_between([3,4], [7,0]).should == [[4,3], [5,2], [6,1]]
+        Board.new.fields_between([3,4], [0,4]).should == [[2,4], [1,4]]
+        Board.new.fields_between([3,4], [5,4]).should == [[4,4]]
+        Board.new.fields_between([3,4], [3,0]).should == [[3,3], [3,2], [3,1]]
+        Board.new.fields_between([3,4], [3,6]).should == [[3,5]]
+      end
+
+    end
+
     context '#stone_at' do
 
       it 'returns the Stone at the given Board field' do

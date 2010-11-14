@@ -28,6 +28,24 @@ module Overpromotion
       @rows[row][column].nil?
     end
 
+    def fields_between(from, to)
+      case
+      when from == to
+        rows = [from.first]
+        cols = [from.last]
+      when from.first == to.first
+        cols = from.last.step(to.last, to.last <=> from.last).to_a
+        rows = [from.first] * cols.size
+      when from.last == to.last
+        rows = from.first.step(to.first, to.first <=> from.first).to_a
+        cols = [from.last] * rows.size
+      else
+        rows = from.first.step(to.first, to.first <=> from.first).to_a
+        cols = from.last.step(to.last, to.last <=> from.last).to_a
+      end
+      rows.zip(cols) - [from, to]
+    end
+
     def stone_at(row, column)
       @rows[row][column]
     end
