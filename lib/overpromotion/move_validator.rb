@@ -23,6 +23,10 @@ module Overpromotion
       ].any?
     end
 
+    def valid_move_empty_fields_in_path(from, to)
+      @board.fields_between(from, to).all? { |field| @board.empty?(*field) }
+    end
+
     def valid_move_in_board(from, to)
       [from, to].flatten.all? { |coord| coord.between?(0, 7) }
     end
