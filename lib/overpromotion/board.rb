@@ -26,6 +26,10 @@ module Overpromotion
       board
     end
 
+    def stone_at(row, column)
+      @rows[row][column]
+    end
+
     def to_s
       rows.map do |row|
         row.map do |field|

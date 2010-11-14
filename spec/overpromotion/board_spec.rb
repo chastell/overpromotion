@@ -42,6 +42,16 @@ module Overpromotion
 
     end
 
+    context '#stone_at' do
+
+      it 'returns the Stone at the given Board field' do
+        Board.new.stone_at(0,0).should == Stone.new(:white)
+        Board.new.stone_at(7,7).should == Stone.new(:black)
+        Board.new.stone_at(3,3).should == nil
+      end
+
+    end
+
     context '#to_s' do
 
       it 'returns a String representation of the Board' do
