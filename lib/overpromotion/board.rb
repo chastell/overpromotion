@@ -30,6 +30,10 @@ module Overpromotion
       @rows[field.first][field.last].nil?
     end
 
+    def empty_fields(row)
+      (0..7).reject { |col| @rows[row][col] }.map { |col| [row, col] }
+    end
+
     def fields_between(from, to)
       case
       when from == to

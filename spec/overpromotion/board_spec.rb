@@ -61,6 +61,29 @@ module Overpromotion
 
     end
 
+    context '#empty_fields' do
+
+      it 'returns fields that are empty in the given row' do
+        Board.new.empty_fields(0).should == []
+        Board.new.empty_fields(2).should == (0..7).map { |col| [2, col] }
+        exemplary = Board.from_s('
+          o.o.o.o.
+          .x.x.x.x
+          ..oo..OO
+          xx..XX..
+          ........
+          xxxXXxxx
+          ........
+          ........
+        ')
+        exemplary.empty_fields(0).should == [[0,1], [0,3], [0,5], [0,7]]
+        exemplary.empty_fields(1).should == [[1,0], [1,2], [1,4], [1,6]]
+        exemplary.empty_fields(2).should == [[2,0], [2,1], [2,4], [2,5]]
+        exemplary.empty_fields(3).should == [[3,2], [3,3], [3,6], [3,7]]
+      end
+
+    end
+
     context '#fields_between' do
 
       it 'returns an Array of fields between the two given fields' do
