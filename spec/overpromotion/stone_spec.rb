@@ -12,6 +12,11 @@ module Overpromotion
         Stone.new(:black).should_not == Stone.new(:white)
       end
 
+      it 'considers Stone activation as well' do
+        Stone.new(:black).should_not         == Stone.new(:black).deactivate!
+        Stone.new(:black).deactivate!.should == Stone.new(:black).deactivate!
+      end
+
     end
 
     context '#activate!' do

@@ -10,7 +10,7 @@ module Overpromotion
     end
 
     def ==(other)
-      colour == other.colour
+      colour == other.colour and active? == other.active?
     end
 
     def activate!
