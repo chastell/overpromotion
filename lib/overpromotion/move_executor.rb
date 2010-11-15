@@ -14,8 +14,8 @@ module Overpromotion
            (player == :white and to.first < 4)
           @board.stone_at(to).activate!
         end
-        if (player == :black and to.first == 0) or
-           (player == :white and to.first == 7)
+        if (player == :black and to.first == 0 and not @board.full_row?(7)) or
+           (player == :white and to.first == 7 and not @board.full_row?(0))
           @board.stone_at(to).deactivate!
           result = :regeneration
         else
