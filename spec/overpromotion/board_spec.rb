@@ -77,6 +77,21 @@ module Overpromotion
 
     end
 
+    context '#place_at' do
+
+      it 'puts the passed Stone at the given field (or clears it with nil)' do
+        drop = Board.new
+        drop.stone_at([3,3]).should == nil
+        drop.place_at([3,3], Stone.new(:black))
+        drop.stone_at([3,3]).should == Stone.new(:black)
+        clear = Board.new
+        clear.stone_at([0,0]).should == Stone.new(:white)
+        clear.place_at([0,0], nil)
+        clear.stone_at([0,0]).should == nil
+      end
+
+    end
+
     context '#stone_at' do
 
       it 'returns the Stone at the given Board field' do

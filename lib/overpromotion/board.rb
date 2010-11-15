@@ -46,6 +46,10 @@ module Overpromotion
       rows.zip(cols) - [from, to]
     end
 
+    def place_at(field, stone)
+      @rows[field.first][field.last] = stone
+    end
+
     def stone_at(field)
       @rows[field.first][field.last]
     end
