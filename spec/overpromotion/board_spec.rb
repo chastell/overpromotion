@@ -77,6 +77,28 @@ module Overpromotion
 
     end
 
+    context '#full_row?' do
+
+      it 'is a predicate whether a given row is full' do
+        Board.new.full_row?(0).should be_true
+        Board.new.full_row?(2).should be_false
+        Board.new.full_row?(7).should be_true
+        exemplary = Board.from_s('
+          oooooooo
+          oooOOooo
+          xxxXXxxx
+          xxxxxxxx
+          oo.ooooo
+          oo.Ooooo
+          xx.Xxxxx
+          xx.xxxxx
+        ')
+        (0..3).each { |row| exemplary.full_row?(row).should be_true  }
+        (4..7).each { |row| exemplary.full_row?(row).should be_false }
+      end
+
+    end
+
     context '#monotonous?' do
 
       it 'is a predicate whether all Stones (if any) are of the same colour' do

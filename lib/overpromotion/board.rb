@@ -48,6 +48,10 @@ module Overpromotion
       rows.zip(cols) - [from, to]
     end
 
+    def full_row?(row)
+      @rows[row].all?
+    end
+
     def monotonous?
       @rows.flatten.compact.map(&:colour).uniq.size < 2
     end
