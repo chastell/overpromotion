@@ -48,6 +48,10 @@ module Overpromotion
       rows.zip(cols) - [from, to]
     end
 
+    def monotonous?
+      @rows.flatten.compact.map(&:colour).uniq.size < 2
+    end
+
     def place_at(field, stone)
       @rows[field.first][field.last] = stone
     end
