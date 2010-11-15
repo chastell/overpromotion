@@ -11,10 +11,14 @@ module Overpromotion
       [:black, :white].cycle do |colour|
         move = @players[colour].make_move(@board)
         break unless move
-        result = MoveExecutor.new(@board).execute(colour, *move).last
+        @board, result = *MoveExecutor.new(@board).execute(colour, *move)
         case result
         when :invalid then redo
         when :winning then break
+        when :regeneration
+          empty = @board.empty_fields({white: 0, black: 7}[colour])
+          field = @players[colour].regenerate?(empty)
+          @board.place_at(field, Stone.new(colour)) if empty.include?(field)
         end
       end
     end

@@ -65,6 +65,20 @@ module Overpromotion
         @black.should_receive(:make_move).ordered.and_return(nil)
       end
 
+      it 'gives the relevant Player an option to regenerate (if possible)' do
+        executor = mock(MoveExecutor)
+        MoveExecutor.should_receive(:new).twice.and_return(executor)
+        @black.should_receive(:make_move).and_return([[6,0], [5,0]])
+        executor.should_receive(:execute).and_return([mock(Board), :successful])
+        board = mock(Board)
+        @white.should_receive(:make_move).and_return([[1,0], [2,0]])
+        executor.should_receive(:execute).and_return([board, :regeneration])
+        board.should_receive(:empty_fields).with(0).and_return([[0,1], [0,3]])
+        @white.should_receive(:regenerate?).with([[0,1], [0,3]]).and_return([0,3])
+        board.should_receive(:place_at).with([0,3], Stone.new(:white))
+        @black.should_receive(:make_move).and_return(nil)
+      end
+
     end
 
   end
