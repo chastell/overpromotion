@@ -14,6 +14,16 @@ module Overpromotion
 
     end
 
+    context '#activate!' do
+
+      it 'activates a Stone' do
+        stone = Stone.new(:black)
+        stone.deactivate!
+        stone.activate!.should be_active
+      end
+
+    end
+
     context '#active?' do
 
       it 'is a predicate whether a Stone is active' do

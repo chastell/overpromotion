@@ -13,6 +13,11 @@ module Overpromotion
       colour == other.colour
     end
 
+    def activate!
+      @active = true
+      self
+    end
+
     def active?
       @active
     end
