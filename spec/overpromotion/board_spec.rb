@@ -33,8 +33,20 @@ module Overpromotion
           o..xx..o
           .o....o.
           ..oooo..
-        '.strip.tr(' ', '')
-        Board.from_s(smile).to_s.should == smile
+        '
+        Board.from_s(smile).to_s.should == smile.strip.tr(' ', '')
+        marked = '
+            01234567
+          0 ..oooo..
+          1 .o....o.
+          2 o.x..x.o
+          3 o......o
+          4 o.x..x.o
+          5 o..xx..o
+          6 .o....o.
+          7 ..oooo..
+        '
+        Board.from_s(marked).to_s.should == smile.strip.tr(' ', '')
       end
 
     end

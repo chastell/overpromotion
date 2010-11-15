@@ -11,14 +11,14 @@ module Overpromotion
 
     def self.from_s(string)
       rows = string.split("\n").map do |line|
-        line.split('').map do |field|
+        line.tr('^.xo', '').split('').map do |field|
           case field
           when '.' then nil
           when 'x' then Stone.new(:black)
           when 'o' then Stone.new(:white)
           end
         end
-      end
+      end.delete_if(&:empty?)
       board = Board.new
       board.instance_variable_get(:@rows).replace(rows)
       board
