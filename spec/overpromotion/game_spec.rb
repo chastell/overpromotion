@@ -14,23 +14,27 @@ module Overpromotion
 
     context '#play' do
 
-      it 'makes Players take turns, with black first, until one gives up' do
-        black, white = mock(Player), mock(Player)
-        Player.should_receive(:new).twice.and_return(black, white)
-        black.should_receive(:make_move).ordered.and_return([[6,0], [5,0]])
-        white.should_receive(:make_move).ordered.and_return([[1,0], [2,0]])
-        black.should_receive(:make_move).ordered.and_return([[6,1], [5,1]])
-        white.should_receive(:make_move).ordered.and_return([[1,1], [2,1]])
-        black.should_receive(:make_move).ordered.and_return(nil)
+      before do
+        @black, @white = mock(Player), mock(Player)
+        Player.should_receive(:new).twice.and_return(@black, @white)
+      end
+
+      after do
         Game.new(Player, Player).play
       end
 
+      it 'makes Players take turns, with black first, until one gives up' do
+        @black.should_receive(:make_move).ordered.and_return([[6,0], [5,0]])
+        @white.should_receive(:make_move).ordered.and_return([[1,0], [2,0]])
+        @black.should_receive(:make_move).ordered.and_return([[6,1], [5,1]])
+        @white.should_receive(:make_move).ordered.and_return([[1,1], [2,1]])
+        @black.should_receive(:make_move).ordered.and_return(nil)
+      end
+
       it 'makes Players take turns, until MoveExecutor makes one win' do
-        black, white = mock(Player), mock(Player)
-        Player.should_receive(:new).twice.and_return(black, white)
-        black.should_receive(:make_move).ordered.and_return([[6,0], [5,0]])
-        white.should_receive(:make_move).ordered.and_return([[1,0], [2,0]])
-        black.should_receive(:make_move).ordered.and_return([[6,1], [5,1]])
+        @black.should_receive(:make_move).ordered.and_return([[6,0], [5,0]])
+        @white.should_receive(:make_move).ordered.and_return([[1,0], [2,0]])
+        @black.should_receive(:make_move).ordered.and_return([[6,1], [5,1]])
         executor = mock(MoveExecutor)
         MoveExecutor.should_receive(:new).exactly(3).times.and_return(executor)
         executor.should_receive(:execute).with(:black, [6,0], [5,0]).ordered
@@ -39,33 +43,26 @@ module Overpromotion
           .and_return([mock(Board), :successful])
         executor.should_receive(:execute).with(:black, [6,1], [5,1]).ordered
           .and_return([mock(Board), :winning])
-        Game.new(Player, Player).play
       end
 
       it 'passes the Board to each Player and MoveExecutor' do
         board = mock(Board)
         Board.should_receive(:new).and_return(board)
-        black, white = mock(Player), mock(Player)
-        Player.should_receive(:new).with(board).twice.and_return(black, white)
-        black.should_receive(:make_move).with(board).and_return([[6,0], [5,0]])
-        white.should_receive(:make_move).with(board).and_return([[1,0], [2,0]])
-        black.should_receive(:make_move).with(board).and_return(nil)
+        @black.should_receive(:make_move).with(board).and_return([[6,0], [5,0]])
+        @white.should_receive(:make_move).with(board).and_return([[1,0], [2,0]])
+        @black.should_receive(:make_move).with(board).and_return(nil)
         executor = mock(MoveExecutor, execute: [board, :successful])
         MoveExecutor.should_receive(:new).with(board).twice.and_return(executor)
-        Game.new(Player, Player).play
       end
 
       it 'forces a given Player to redo invalid moves' do
-        black, white = mock(Player), mock(Player)
-        Player.should_receive(:new).twice.and_return(black, white)
-        black.should_receive(:make_move).ordered.and_return([[3,3], [3,3]])
-        black.should_receive(:make_move).ordered.and_return([[3,3], [3,3]])
-        black.should_receive(:make_move).ordered.and_return([[6,0], [5,0]])
-        white.should_receive(:make_move).ordered.and_return([[3,3], [3,3]])
-        white.should_receive(:make_move).ordered.and_return([[1,0], [2,0]])
-        black.should_receive(:make_move).ordered.and_return([[3,3], [3,3]])
-        black.should_receive(:make_move).ordered.and_return(nil)
-        Game.new(Player, Player).play
+        @black.should_receive(:make_move).ordered.and_return([[3,3], [3,3]])
+        @black.should_receive(:make_move).ordered.and_return([[3,3], [3,3]])
+        @black.should_receive(:make_move).ordered.and_return([[6,0], [5,0]])
+        @white.should_receive(:make_move).ordered.and_return([[3,3], [3,3]])
+        @white.should_receive(:make_move).ordered.and_return([[1,0], [2,0]])
+        @black.should_receive(:make_move).ordered.and_return([[3,3], [3,3]])
+        @black.should_receive(:make_move).ordered.and_return(nil)
       end
 
     end
