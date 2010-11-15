@@ -7,6 +7,13 @@ module Overpromotion
       @players = { black: black.new(@board), white: white.new(@board) }
     end
 
+    def play
+      [:black, :white].cycle do |colour|
+        move = @players[colour].make_move
+        break unless move
+      end
+    end
+
   end
 
 end
