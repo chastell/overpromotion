@@ -26,6 +26,23 @@ module Overpromotion
         Game.new(Player, Player).play
       end
 
+      it 'makes Players take turns, until MoveExecutor makes one win' do
+        black, white = mock(Player), mock(Player)
+        Player.should_receive(:new).twice.and_return(black, white)
+        black.should_receive(:make_move).ordered.and_return([[6,0], [5,0]])
+        white.should_receive(:make_move).ordered.and_return([[1,0], [2,0]])
+        black.should_receive(:make_move).ordered.and_return([[6,1], [5,1]])
+        executor = mock(MoveExecutor)
+        MoveExecutor.should_receive(:new).exactly(3).times.and_return(executor)
+        executor.should_receive(:execute).with(:black, [6,0], [5,0]).ordered
+          .and_return([mock(Board), :successful])
+        executor.should_receive(:execute).with(:white, [1,0], [2,0]).ordered
+          .and_return([mock(Board), :successful])
+        executor.should_receive(:execute).with(:black, [6,1], [5,1]).ordered
+          .and_return([mock(Board), :winning])
+        Game.new(Player, Player).play
+      end
+
     end
 
   end

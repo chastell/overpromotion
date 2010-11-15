@@ -11,6 +11,8 @@ module Overpromotion
       [:black, :white].cycle do |colour|
         move = @players[colour].make_move
         break unless move
+        from, to = *move
+        break if MoveExecutor.new(@board).execute(colour, from, to).last == :winning
       end
     end
 
