@@ -6,10 +6,15 @@ module Overpromotion
 
     def initialize(colour)
       @colour = colour
+      @active = true
     end
 
     def ==(other)
       colour == other.colour
+    end
+
+    def active?
+      @active
     end
 
   end

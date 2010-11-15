@@ -14,6 +14,14 @@ module Overpromotion
 
     end
 
+    context '#active?' do
+
+      it 'is a predicate whether a Stone is active' do
+        Stone.new(:black).should be_active
+      end
+
+    end
+
   end
 
 end
