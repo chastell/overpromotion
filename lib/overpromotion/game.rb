@@ -9,7 +9,7 @@ module Overpromotion
 
     def play
       [:black, :white].cycle do |colour|
-        move = @players[colour].make_move
+        move = @players[colour].make_move(@board)
         break unless move
         from, to = *move
         break if MoveExecutor.new(@board).execute(colour, from, to).last == :winning

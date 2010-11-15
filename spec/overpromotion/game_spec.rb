@@ -4,10 +4,9 @@ module Overpromotion
 
     context '.new' do
 
-      it 'creates a new Board and two Players' do
-        board = mock Board
-        Board.should_receive(:new).and_return(board)
-        Player.should_receive(:new).with(board).twice
+      it 'creates a new Board and two Players (from provided classes)' do
+        Board.should_receive(:new)
+        Player.should_receive(:new).twice
         Game.new(Player, Player)
       end
 
@@ -40,6 +39,19 @@ module Overpromotion
           .and_return([mock(Board), :successful])
         executor.should_receive(:execute).with(:black, [6,1], [5,1]).ordered
           .and_return([mock(Board), :winning])
+        Game.new(Player, Player).play
+      end
+
+      it 'passes the Board to each Player and MoveExecutor' do
+        board = mock(Board)
+        Board.should_receive(:new).and_return(board)
+        black, white = mock(Player), mock(Player)
+        Player.should_receive(:new).with(board).twice.and_return(black, white)
+        black.should_receive(:make_move).with(board).and_return([[6,0], [5,0]])
+        white.should_receive(:make_move).with(board).and_return([[1,0], [2,0]])
+        black.should_receive(:make_move).with(board).and_return(nil)
+        executor = mock(MoveExecutor, execute: [board, :successful])
+        MoveExecutor.should_receive(:new).with(board).twice.and_return(executor)
         Game.new(Player, Player).play
       end
 
