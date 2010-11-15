@@ -22,6 +22,14 @@ module Overpromotion
 
     end
 
+    context '#deactivate!' do
+
+      it 'deactivates a Stone' do
+        Stone.new(:black).deactivate!.should_not be_active
+      end
+
+    end
+
   end
 
 end

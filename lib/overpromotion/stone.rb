@@ -17,6 +17,11 @@ module Overpromotion
       @active
     end
 
+    def deactivate!
+      @active = false
+      self
+    end
+
   end
 
 end
