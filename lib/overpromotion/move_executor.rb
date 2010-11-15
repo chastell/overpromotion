@@ -10,7 +10,13 @@ module Overpromotion
       if MoveValidator.new(@board).valid_move?(player, from, to)
         @board.place_at(to, @board.stone_at(from))
         @board.place_at(from, nil)
-        result = :successful
+        if (player == :black and to.first == 0) or
+           (player == :white and to.first == 7)
+          @board.stone_at(to).deactivate!
+          result = :regeneration
+        else
+          result = :successful
+        end
       else
         result = :invalid
       end
