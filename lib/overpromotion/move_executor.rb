@@ -21,6 +21,7 @@ module Overpromotion
         else
           result = :successful
         end
+        result = :winning if @board.monotonous?
       else
         result = :invalid
       end
