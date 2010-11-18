@@ -8,17 +8,15 @@ module Overpromotion
 
     def execute(player, from, to)
       if MoveValidator.new(@board).valid_move?(player, from, to)
-        @board.place_at(to, @board.stone_at(from))
-        @board.place_at(from, nil)
+        @player, @from, @to = player, from, to
 
-        if (player == :black and to.first > 3) or
-           (player == :white and to.first < 4)
-          @board.stone_at(to).activate
-        end
+        move_stone
 
-        if (player == :black and to.first == 0 and not @board.full_row?(7)) or
-           (player == :white and to.first == 7 and not @board.full_row?(0))
-          @board.stone_at(to).deactivate
+        activate_returning
+
+        deactivate_regenerating
+
+        if regeneration?
           result = :regeneration
         else
           result = :successful
@@ -30,6 +28,29 @@ module Overpromotion
       end
 
       [@board, result]
+    end
+
+    private
+
+    def activate_returning
+      if (@player == :black and @to.first > 3) or
+         (@player == :white and @to.first < 4)
+        @board.stone_at(@to).activate
+      end
+    end
+
+    def deactivate_regenerating
+      @board.stone_at(@to).deactivate if regeneration?
+    end
+
+    def move_stone
+      @board.place_at(@to, @board.stone_at(@from))
+      @board.place_at(@from, nil)
+    end
+
+    def regeneration?
+      (@player == :black and @to.first == 0 and not @board.full_row?(7)) or
+      (@player == :white and @to.first == 7 and not @board.full_row?(0))
     end
 
   end
