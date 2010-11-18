@@ -7,25 +7,22 @@ module Overpromotion
     end
 
     def execute(player, from, to)
-      if MoveValidator.new(@board).valid_move?(player, from, to)
-        @player, @from, @to = player, from, to
+      @player, @from, @to = player, from, to
 
+      valid_move = MoveValidator.new(@board).valid_move?(@player, @from, @to)
+
+      if valid_move
         move_stone
-
         activate_returning
-
         deactivate_regenerating
-
-        if regeneration?
-          result = :regeneration
-        else
-          result = :successful
-        end
-
-        result = :winning if @board.monotonous?
-      else
-        result = :invalid
       end
+
+      result = case
+               when (not valid_move)   then :invalid
+               when @board.monotonous? then :winning
+               when regeneration?      then :regeneration
+               else                         :successful
+               end
 
       [@board, result]
     end
