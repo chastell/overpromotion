@@ -10,6 +10,11 @@ module Overpromotion
         Game.new(Player, Player)
       end
 
+      it 'falls defaults to Player if no classes are provided' do
+        Player.should_receive(:new).twice
+        Game.new
+      end
+
     end
 
     context '#play' do
