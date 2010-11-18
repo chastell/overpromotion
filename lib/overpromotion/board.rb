@@ -14,10 +14,10 @@ module Overpromotion
         line.tr('^.xXoO', '').split('').map do |field|
           case field
           when '.' then nil
-          when 'x' then Stone.new(:black).activate!
-          when 'X' then Stone.new(:black).deactivate!
-          when 'o' then Stone.new(:white).activate!
-          when 'O' then Stone.new(:white).deactivate!
+          when 'x' then Stone.new(:black).activate
+          when 'X' then Stone.new(:black).deactivate
+          when 'o' then Stone.new(:white).activate
+          when 'O' then Stone.new(:white).deactivate
           end
         end
       end.delete_if(&:empty?)
@@ -72,11 +72,11 @@ module Overpromotion
       @rows.map do |row|
         row.map do |field|
           case field
-          when nil                           then '.'
-          when Stone.new(:black).activate!   then 'x'
-          when Stone.new(:black).deactivate! then 'X'
-          when Stone.new(:white).activate!   then 'o'
-          when Stone.new(:white).deactivate! then 'O'
+          when nil                          then '.'
+          when Stone.new(:black).activate   then 'x'
+          when Stone.new(:black).deactivate then 'X'
+          when Stone.new(:white).activate   then 'o'
+          when Stone.new(:white).deactivate then 'O'
           end
         end.join
       end.join("\n")

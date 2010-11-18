@@ -13,18 +13,18 @@ module Overpromotion
       end
 
       it 'considers Stone activation as well' do
-        Stone.new(:black).should_not         == Stone.new(:black).deactivate!
-        Stone.new(:black).deactivate!.should == Stone.new(:black).deactivate!
+        Stone.new(:black).should_not        == Stone.new(:black).deactivate
+        Stone.new(:black).deactivate.should == Stone.new(:black).deactivate
       end
 
     end
 
-    context '#activate!' do
+    context '#activate' do
 
       it 'activates a Stone' do
         stone = Stone.new(:black)
-        stone.deactivate!
-        stone.activate!.should be_active
+        stone.deactivate
+        stone.activate.should be_active
       end
 
     end
@@ -37,10 +37,10 @@ module Overpromotion
 
     end
 
-    context '#deactivate!' do
+    context '#deactivate' do
 
       it 'deactivates a Stone' do
-        Stone.new(:black).deactivate!.should_not be_active
+        Stone.new(:black).deactivate.should_not be_active
       end
 
     end

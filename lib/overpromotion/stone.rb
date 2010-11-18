@@ -13,7 +13,7 @@ module Overpromotion
       colour == other.colour and active? == other.active?
     end
 
-    def activate!
+    def activate
       @active = true
       self
     end
@@ -22,7 +22,7 @@ module Overpromotion
       @active
     end
 
-    def deactivate!
+    def deactivate
       @active = false
       self
     end
