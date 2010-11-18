@@ -21,6 +21,7 @@ module Overpromotion
           end
         end
       end.delete_if(&:empty?)
+
       board = Board.new
       board.instance_variable_get(:@rows).replace(rows)
       board
