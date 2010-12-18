@@ -2,7 +2,7 @@ module Overpromotion
 
   describe Stone do
 
-    context '#==' do
+    describe '#==' do
 
       it 'considers Stones of the same colour equal' do
         Stone.new(:black).should == Stone.new(:black)
@@ -19,7 +19,7 @@ module Overpromotion
 
     end
 
-    context '#activate' do
+    describe '#activate' do
 
       it 'activates a Stone' do
         stone = Stone.new(:black)
@@ -29,7 +29,7 @@ module Overpromotion
 
     end
 
-    context '#active?' do
+    describe '#active?' do
 
       it 'is a predicate whether a Stone is active' do
         Stone.new(:black).should be_active
@@ -37,7 +37,7 @@ module Overpromotion
 
     end
 
-    context '#deactivate' do
+    describe '#deactivate' do
 
       it 'deactivates a Stone' do
         Stone.new(:black).deactivate.should_not be_active

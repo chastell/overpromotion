@@ -4,7 +4,7 @@ module Overpromotion
 
   describe Board do
 
-    context '.new' do
+    describe '.new' do
 
       it 'sets the 8×8 Board up with Stones in the right positions' do
         Board.new.to_s.should == '
@@ -21,7 +21,7 @@ module Overpromotion
 
     end
 
-    context '.from_s' do
+    describe '.from_s' do
 
       it 'returns a Board built from the String representation' do
         smile = '
@@ -51,7 +51,7 @@ module Overpromotion
 
     end
 
-    context '#empty?' do
+    describe '#empty?' do
 
       it 'is a predicate whether a given Board field is empty' do
         Board.new.empty?([0,0]).should be_false
@@ -61,7 +61,7 @@ module Overpromotion
 
     end
 
-    context '#empty_fields' do
+    describe '#empty_fields' do
 
       it 'returns fields that are empty in the given row' do
         Board.new.empty_fields(0).should == []
@@ -84,7 +84,7 @@ module Overpromotion
 
     end
 
-    context '#fields_between' do
+    describe '#fields_between' do
 
       it 'returns an Array of fields between the two given fields' do
         Board.new.fields_between([3,4], [3,4]).should == []
@@ -100,7 +100,7 @@ module Overpromotion
 
     end
 
-    context '#full_row?' do
+    describe '#full_row?' do
 
       it 'is a predicate whether a given row is full' do
         Board.new.full_row?(0).should be_true
@@ -122,7 +122,7 @@ module Overpromotion
 
     end
 
-    context '#monotonous?' do
+    describe '#monotonous?' do
 
       it 'is a predicate whether all Stones (if any) are of the same colour' do
         Board.new.should_not be_monotonous
@@ -160,7 +160,7 @@ module Overpromotion
 
     end
 
-    context '#place_at' do
+    describe '#place_at' do
 
       it 'puts the passed Stone at the given field (or clears it with nil)' do
         drop = Board.new
@@ -175,7 +175,7 @@ module Overpromotion
 
     end
 
-    context '#stone_at' do
+    describe '#stone_at' do
 
       it 'returns the Stone at the given Board field' do
         Board.new.stone_at([0,0]).should == Stone.new(:white)
@@ -185,7 +185,7 @@ module Overpromotion
 
     end
 
-    context '#to_s' do
+    describe '#to_s' do
 
       it 'returns a String representation of the Board' do
         Board.new.to_s.should == '

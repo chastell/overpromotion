@@ -2,7 +2,7 @@ module Overpromotion
 
   describe MoveExecutor do
 
-    context '#execute' do
+    describe '#execute' do
 
       it 'executes example moves from the relevant fixture' do
         YAML.load_file('spec/fixtures/move_executor.yml').each do |example|

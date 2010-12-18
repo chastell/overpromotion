@@ -2,7 +2,7 @@ module Overpromotion
 
   describe Game do
 
-    context '.new' do
+    describe '.new' do
 
       it 'creates a new Board and two Players (from provided classes)' do
         Board.should_receive(:new)
@@ -17,7 +17,7 @@ module Overpromotion
 
     end
 
-    context '#play' do
+    describe '#play' do
 
       before do
         @black, @white = mock(Player), mock(Player)
