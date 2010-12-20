@@ -1,6 +1,2 @@
-module Overpromotion
-
-  class Player
-  end
-
-end
+module Overpromotion class Player
+end end
