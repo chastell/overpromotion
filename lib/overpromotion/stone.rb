@@ -2,12 +2,12 @@ module Overpromotion class Stone
 
   attr_reader :colour
 
-  def initialize(colour)
+  def initialize colour
     @colour = colour
     @active = true
   end
 
-  def ==(other)
+  def == other
     colour == other.colour and active? == other.active?
   end
 

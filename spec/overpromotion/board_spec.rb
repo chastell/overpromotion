@@ -64,7 +64,7 @@ module Overpromotion describe Board do
     it 'returns fields that are empty in the given row' do
       Board.new.empty_fields(0).should == []
       Board.new.empty_fields(2).should == (0..7).map { |col| [2, col] }
-      exemplary = Board.from_s('
+      exemplary = Board.from_s '
         o.o.o.o.
         .x.x.x.x
         ..oo..OO
@@ -73,7 +73,7 @@ module Overpromotion describe Board do
         xxxXXxxx
         ........
         ........
-      ')
+      '
       exemplary.empty_fields(0).should == [[0,1], [0,3], [0,5], [0,7]]
       exemplary.empty_fields(1).should == [[1,0], [1,2], [1,4], [1,6]]
       exemplary.empty_fields(2).should == [[2,0], [2,1], [2,4], [2,5]]
@@ -104,7 +104,7 @@ module Overpromotion describe Board do
       Board.new.full_row?(0).should be_true
       Board.new.full_row?(2).should be_false
       Board.new.full_row?(7).should be_true
-      exemplary = Board.from_s('
+      exemplary = Board.from_s '
         oooooooo
         oooOOooo
         xxxXXxxx
@@ -113,7 +113,7 @@ module Overpromotion describe Board do
         oo.Ooooo
         xx.Xxxxx
         xx.xxxxx
-      ')
+      '
       (0..3).each { |row| exemplary.full_row?(row).should be_true  }
       (4..7).each { |row| exemplary.full_row?(row).should be_false }
     end
@@ -163,11 +163,11 @@ module Overpromotion describe Board do
     it 'puts the passed Stone at the given field (or clears it with nil)' do
       drop = Board.new
       drop.stone_at([3,3]).should == nil
-      drop.place_at([3,3], Stone.new(:black))
+      drop.place_at [3,3], Stone.new(:black)
       drop.stone_at([3,3]).should == Stone.new(:black)
       clear = Board.new
       clear.stone_at([0,0]).should == Stone.new(:white)
-      clear.place_at([0,0], nil)
+      clear.place_at [0,0], nil
       clear.stone_at([0,0]).should == nil
     end
 

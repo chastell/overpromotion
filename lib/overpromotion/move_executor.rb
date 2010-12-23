@@ -1,13 +1,13 @@
 module Overpromotion class MoveExecutor
 
-  def initialize(board)
+  def initialize board
     @board = board
   end
 
-  def execute(player, from, to)
+  def execute player, from, to
     @player, @from, @to = player, from, to
 
-    valid_move = MoveValidator.new(@board).valid_move?(@player, @from, @to)
+    valid_move = MoveValidator.new(@board).valid_move? @player, @from, @to
 
     if valid_move
       move_stone
@@ -39,8 +39,8 @@ module Overpromotion class MoveExecutor
   end
 
   def move_stone
-    @board.place_at(@to, @board.stone_at(@from))
-    @board.place_at(@from, nil)
+    @board.place_at @to, @board.stone_at(@from)
+    @board.place_at @from, nil
   end
 
   def regeneration?

@@ -2,12 +2,12 @@ module Overpromotion class Board
 
   def initialize
     @rows = []
-    2.times { @rows << Array.new(8) { Stone.new(:white) } }
-    4.times { @rows << Array.new(8)                       }
-    2.times { @rows << Array.new(8) { Stone.new(:black) } }
+    2.times { @rows << Array.new(8) { Stone.new :white } }
+    4.times { @rows << Array.new(8)                      }
+    2.times { @rows << Array.new(8) { Stone.new :black } }
   end
 
-  def self.from_s(string)
+  def self.from_s string
     rows = string.split("\n").map do |line|
       line.tr('^.xXoO', '').split('').map do |field|
         case field
@@ -18,22 +18,22 @@ module Overpromotion class Board
         when 'O' then Stone.new(:white).deactivate
         end
       end
-    end.delete_if(&:empty?)
+    end.delete_if &:empty?
 
     board = Board.new
-    board.instance_variable_get(:@rows).replace(rows)
+    board.instance_variable_get(:@rows).replace rows
     board
   end
 
-  def empty?(field)
+  def empty? field
     @rows[field.first][field.last].nil?
   end
 
-  def empty_fields(row)
+  def empty_fields row
     (0..7).reject { |col| @rows[row][col] }.map { |col| [row, col] }
   end
 
-  def fields_between(from, to)
+  def fields_between from, to
     case
     when from == to
       rows = [from.first]
@@ -51,7 +51,7 @@ module Overpromotion class Board
     rows.zip(cols) - [from, to]
   end
 
-  def full_row?(row)
+  def full_row? row
     @rows[row].all?
   end
 
@@ -59,11 +59,11 @@ module Overpromotion class Board
     @rows.flatten.compact.map(&:colour).uniq.size < 2
   end
 
-  def place_at(field, stone)
+  def place_at field, stone
     @rows[field.first][field.last] = stone
   end
 
-  def stone_at(field)
+  def stone_at field
     @rows[field.first][field.last]
   end
 
@@ -78,7 +78,7 @@ module Overpromotion class Board
         when Stone.new(:white).deactivate then 'O'
         end
       end.join
-    end.join("\n")
+    end.join "\n"
   end
 
 end end

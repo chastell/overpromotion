@@ -20,7 +20,7 @@ module Overpromotion describe Stone do
   describe '#activate' do
 
     it 'activates a Stone' do
-      stone = Stone.new(:black)
+      stone = Stone.new :black
       stone.deactivate
       stone.activate.should be_active
     end
