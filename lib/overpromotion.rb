@@ -1,6 +1,8 @@
-require_relative 'overpromotion/board'
-require_relative 'overpromotion/game'
-require_relative 'overpromotion/move_executor'
-require_relative 'overpromotion/move_validator'
-require_relative 'overpromotion/player'
-require_relative 'overpromotion/stone'
+module Overpromotion
+  autoload :Board,         'overpromotion/board'
+  autoload :Game,          'overpromotion/game'
+  autoload :MoveExecutor,  'overpromotion/move_executor'
+  autoload :MoveValidator, 'overpromotion/move_validator'
+  autoload :Player,        'overpromotion/player'
+  autoload :Stone,         'overpromotion/stone'
+end
